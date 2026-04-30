@@ -25,8 +25,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <Navbar />
       <div className="max-w-6xl mx-auto px-6">
-        <Navbar />
         <Hero />
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import api from '@/lib/axios';
+import Navbar from '@/components/Navbar';
 
 type User = {
   _id: string;
@@ -71,8 +72,11 @@ export default function AdminDashboard() {
   const activeLoans = loans.filter((l) => l.status !== 'CLOSED').length;
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-
+    <div>
+      <Navbar />
+      
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6 py-8">
       {/* HEADER */}
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
 
@@ -180,6 +184,8 @@ export default function AdminDashboard() {
         </div>
       )}
 
+    </div>
+    </div>
     </div>
   );
 }
