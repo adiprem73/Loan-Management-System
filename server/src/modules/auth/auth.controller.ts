@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import * as authService from './auth.service';
+import User from '../../models/user.model';
 
 export const signup = async (req: Request, res: Response) => {
   try {
@@ -39,5 +40,21 @@ export const getMe = async (req: Request, res: Response) => {
 
   } catch (err: any) {
     res.status(404).json({ success: false, message: err.message });
+  }
+};
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find().select('-password');
+
+    res.status(200).json({
+      success: true,
+      users,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch users',
+    });
   }
 };

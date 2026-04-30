@@ -1,10 +1,14 @@
+// app/page.tsx
 'use client';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 
-export default function RootPage() {
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/HeroSection';
+
+export default function HomePage() {
   const router = useRouter();
   const { isAuthenticated, user, loadFromStorage } = useAuthStore();
 
@@ -14,16 +18,17 @@ export default function RootPage() {
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      if (user.role === 'borrower') router.push('/apply');
+      if (user.role === 'borrower') router.push('/my-loans');
       else router.push(`/dashboard/${user.role}`);
-    } else {
-      router.push('/login');
     }
   }, [isAuthenticated, user]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="text-gray-500">Redirecting...</p>
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <Navbar />
+        <Hero />
+      </div>
     </div>
   );
 }

@@ -12,6 +12,8 @@ type Loan = {
   createdAt: string;
 };
 
+import Navbar from '@/components/Navbar';
+
 export default function MyLoansPage() {
   const [loans, setLoans] = useState<Loan[]>([]);
   const [loading, setLoading] = useState(true);
@@ -56,8 +58,11 @@ export default function MyLoansPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div>
+      <Navbar />
+    <div className="min-h-screen bg-black text-white">
 
+      <div className="max-w-7xl mx-auto py-8 px-14">
       {/* Header */}
       <h1 className="text-3xl font-bold mb-6">Borrower Dashboard</h1>
 
@@ -126,7 +131,8 @@ export default function MyLoansPage() {
           ))}
         </div>
       )}
-
+</div>
+</div>
     </div>
   );
 }

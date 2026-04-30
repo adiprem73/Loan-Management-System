@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import api from '@/lib/axios';
+import Navbar from '@/components/Navbar';
 
 type Loan = {
   _id: string;
@@ -98,8 +99,10 @@ export default function CollectionDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-
+    <div>
+        <Navbar />
+    <div className="min-h-screen bg-black text-white">
+    <div className="max-w-7xl mx-auto py-8 px-14">
       <h1 className="text-3xl font-bold mb-6">Collection Dashboard</h1>
 
       {loans.length === 0 ? (
@@ -172,6 +175,8 @@ export default function CollectionDashboard() {
         </div>
       )}
 
+    </div>
+    </div>
     </div>
   );
 }

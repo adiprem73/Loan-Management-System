@@ -31,3 +31,14 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
     return res.status(401).json({ success: false, message: 'Invalid or expired token' });
   }
 };
+
+export const authorize = (...roles: string[]) => {
+  return (req: any, res: Response, next: any) => {
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({
+        message: 'Access denied',
+      });
+    }
+    next();
+  };
+};
