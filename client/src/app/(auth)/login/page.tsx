@@ -8,8 +8,13 @@ import { useAuthStore } from '@/store/authStore';
 import { UserRole } from '@/types';
 import Navbar from '@/components/Navbar';
 
+// const redirectByRole = (role: UserRole): string => {
+//   if (role === 'borrower') return '/apply';
+//   return `/dashboard/${role}`;
+// };
+
 const redirectByRole = (role: UserRole): string => {
-  if (role === 'borrower') return '/apply';
+  if (role === "borrower") return "/my-loans"; // ✅ changed
   return `/dashboard/${role}`;
 };
 
