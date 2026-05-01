@@ -60,50 +60,51 @@ export default function DisbursementDashboard() {
 
   return (
     <div>
-        <Navbar />
-        
-    <div className="min-h-screen bg-black text-white">
-    <div className="max-w-7xl mx-auto py-8 px-14">
-      <h1 className="text-3xl font-bold mb-6">Disbursement Dashboard</h1>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/50 rounded-full mix-blend-screen filter blur-[80px] opacity-20 animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/60 rounded-full mix-blend-screen filter blur-[80px] opacity-20 animate-pulse delay-1000"></div>
+      <Navbar />
 
-      {loans.length === 0 ? (
-        <p className="text-gray-400">No approved loans</p>
-      ) : (
-        <div className="space-y-4">
-          {loans.map((loan) => (
-            <div
-              key={loan._id}
-              className="bg-zinc-900 p-6 rounded-xl border border-zinc-800"
-            >
-              <div className="flex justify-between items-center mb-3">
-                <h2 className="text-lg font-semibold">
-                  ₹{loan.amount}
-                </h2>
-                <span className="text-blue-400 text-sm">APPROVED</span>
-              </div>
+      <div className="min-h-screen bg-black text-white">
+        <div className="max-w-7xl mx-auto py-8 px-14">
+          <h1 className="text-3xl font-bold mb-6">Disbursement Dashboard</h1>
 
-              <p className="text-sm text-gray-400">
-                Borrower: {loan.borrower?.name} ({loan.borrower?.email})
-              </p>
+          {loans.length === 0 ? (
+            <p className="text-gray-400">No approved loans</p>
+          ) : (
+            <div className="space-y-4">
+              {loans.map((loan) => (
+                <div
+                  key={loan._id}
+                  className="bg-zinc-900 p-6 rounded-xl border border-zinc-800"
+                >
+                  <div className="flex justify-between items-center mb-3">
+                    <h2 className="text-lg font-semibold">₹{loan.amount}</h2>
+                    <span className="text-blue-400 text-sm">APPROVED</span>
+                  </div>
 
-              <p className="text-sm text-gray-400 mt-1">
-                Repayment: ₹{loan.totalRepayment}
-              </p>
+                  <p className="text-sm text-gray-400">
+                    Borrower: {loan.borrower?.name} ({loan.borrower?.email})
+                  </p>
 
-              <button
-                onClick={() => handleDisburse(loan._id)}
-                disabled={actionLoading === loan._id}
-                className="mt-4 px-4 py-2 bg-purple-600 rounded-lg"
-              >
-                {actionLoading === loan._id ? 'Processing...' : 'Disburse 💸'}
-              </button>
+                  <p className="text-sm text-gray-400 mt-1">
+                    Repayment: ₹{loan.totalRepayment}
+                  </p>
 
+                  <button
+                    onClick={() => handleDisburse(loan._id)}
+                    disabled={actionLoading === loan._id}
+                    className="mt-4 px-4 py-2 bg-purple-600 rounded-lg"
+                  >
+                    {actionLoading === loan._id
+                      ? "Processing..."
+                      : "Disburse 💸"}
+                  </button>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      )}
-</div>
-</div>
+      </div>
     </div>
   );
 }

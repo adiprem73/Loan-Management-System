@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="max-w-xl">
 
         <span className="text-xs bg-white/10 px-3 py-1 rounded-full text-purple-300">
-          AI-powered lending platform
+          Loan Management, Simplified
         </span>
 
         <h1 className="text-6xl font-bold mt-6 leading-tight">

@@ -100,83 +100,76 @@ export default function CollectionDashboard() {
 
   return (
     <div>
-        <Navbar />
-    <div className="min-h-screen bg-black text-white">
-    <div className="max-w-7xl mx-auto py-8 px-14">
-      <h1 className="text-3xl font-bold mb-6">Collection Dashboard</h1>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/50 rounded-full mix-blend-screen filter blur-[80px] opacity-20 animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/60 rounded-full mix-blend-screen filter blur-[80px] opacity-20 animate-pulse delay-1000"></div>
+      <Navbar />
+      <div className="min-h-screen bg-black text-white">
+        <div className="max-w-7xl mx-auto py-8 px-14">
+          <h1 className="text-3xl font-bold mb-6">Collection Dashboard</h1>
 
-      {loans.length === 0 ? (
-        <p className="text-gray-400">No disbursed loans</p>
-      ) : (
-        <div className="space-y-5">
-
-          {loans.map((loan) => (
-            <div
-              key={loan._id}
-              className="bg-zinc-900 p-6 rounded-xl border border-zinc-800"
-            >
-
-              {/* Loan Info */}
-              <div className="flex justify-between mb-3">
-                <h2 className="text-lg font-semibold">
-                  ₹{loan.amount}
-                </h2>
-                <span className="text-purple-400 text-sm">DISBURSED</span>
-              </div>
-
-              <p className="text-sm text-gray-400">
-                {loan.borrower?.name} ({loan.borrower?.email})
-              </p>
-
-              <p className="text-sm mt-1">
-                Total: ₹{loan.totalRepayment}
-              </p>
-
-              <p className="text-sm text-red-400">
-                Outstanding: ₹{loan.outstandingBalance}
-              </p>
-
-              {/* Payment Inputs */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-
-                <input
-                  type="number"
-                  placeholder="Enter Amount"
-                  value={paymentData[loan._id]?.amount || ''}
-                  onChange={(e) =>
-                    handleChange(loan._id, 'amount', e.target.value)
-                  }
-                  className="p-2 rounded bg-zinc-800 border border-zinc-700"
-                />
-
-                <input
-                  type="text"
-                  placeholder="UTR Number"
-                  value={paymentData[loan._id]?.utr || ''}
-                  onChange={(e) =>
-                    handleChange(loan._id, 'utr', e.target.value)
-                  }
-                  className="p-2 rounded bg-zinc-800 border border-zinc-700"
-                />
-
-                <button
-                  onClick={() => handlePayment(loan._id)}
-                  disabled={processingId === loan._id}
-                  className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
+          {loans.length === 0 ? (
+            <p className="text-gray-400">No disbursed loans</p>
+          ) : (
+            <div className="space-y-5">
+              {loans.map((loan) => (
+                <div
+                  key={loan._id}
+                  className="bg-zinc-900 p-6 rounded-xl border border-zinc-800"
                 >
-                  {processingId === loan._id ? 'Processing...' : 'Record Payment'}
-                </button>
+                  {/* Loan Info */}
+                  <div className="flex justify-between mb-3">
+                    <h2 className="text-lg font-semibold">₹{loan.amount}</h2>
+                    <span className="text-purple-400 text-sm">DISBURSED</span>
+                  </div>
 
-              </div>
+                  <p className="text-sm text-gray-400">
+                    {loan.borrower?.name} ({loan.borrower?.email})
+                  </p>
 
+                  <p className="text-sm mt-1">Total: ₹{loan.totalRepayment}</p>
+
+                  <p className="text-sm text-red-400">
+                    Outstanding: ₹{loan.outstandingBalance}
+                  </p>
+
+                  {/* Payment Inputs */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+                    <input
+                      type="number"
+                      placeholder="Enter Amount"
+                      value={paymentData[loan._id]?.amount || ""}
+                      onChange={(e) =>
+                        handleChange(loan._id, "amount", e.target.value)
+                      }
+                      className="p-2 rounded bg-zinc-800 border border-zinc-700"
+                    />
+
+                    <input
+                      type="text"
+                      placeholder="UTR Number"
+                      value={paymentData[loan._id]?.utr || ""}
+                      onChange={(e) =>
+                        handleChange(loan._id, "utr", e.target.value)
+                      }
+                      className="p-2 rounded bg-zinc-800 border border-zinc-700"
+                    />
+
+                    <button
+                      onClick={() => handlePayment(loan._id)}
+                      disabled={processingId === loan._id}
+                      className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
+                    >
+                      {processingId === loan._id
+                        ? "Processing..."
+                        : "Record Payment"}
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-
+          )}
         </div>
-      )}
-
-    </div>
-    </div>
+      </div>
     </div>
   );
 }
