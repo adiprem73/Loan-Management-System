@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const { isAuthenticated, user, logout, loadFromStorage } = useAuthStore();
@@ -23,15 +24,20 @@ export default function Navbar() {
     <nav className="w-full flex items-center justify-between py-4 bg-black/40 backdrop-blur-md border-b border-white/10 max-w-6xl mx-auto px-2">
       {/* Logo */}
       <div className="flex items-center gap-2 text-white font-semibold text-lg">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
-          ✨
+        <div className="w-8 h-8 relative">
+          <Image
+            src="/1.png"
+            alt="SwiftLoan Logo"
+            fill
+            className="object-contain rounded-lg"
+          />
         </div>
-        LoanFlow
+        SwiftLoan
       </div>
 
       {/* Links */}
       <div className="hidden md:flex gap-8 text-gray-300 text-sm">
-        <Link href="#">Home</Link>
+        <Link href="/">Home</Link>
         <Link href="#">Features</Link>
         <Link href="#">How it Works</Link>
         <Link href="/dashboard/sanction">Dashboard</Link>
