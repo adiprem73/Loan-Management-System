@@ -123,12 +123,6 @@ cd server
 npm install
 ```
 
-Create a `.env` file in the `server/` directory (see [Environment Variables](#environment-variables)):
-
-```bash
-cp .env.example .env
-# Fill in your values
-```
 
 Run the seed script to create all role accounts:
 
@@ -145,9 +139,11 @@ npm run dev
 Server runs on `http://localhost:5000`
 
 ### 3. Setup the Frontend
+Open a new terminal. Keep the backedn running on one terminal.
+From ./LOAN-MANAGEMENT-SYSTEM-MAIN
 
 ```bash
-cd ../client
+cd client
 npm install
 npm run dev
 ```
